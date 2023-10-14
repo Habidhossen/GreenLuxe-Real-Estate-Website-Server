@@ -7,13 +7,13 @@ const propertySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
+    description: String,
+    propertyType: {
       type: String,
       required: true,
     },
-    propertyType: {
+    status: {
       type: String,
-      enum: ["house", "apartment", "commercial"],
       required: true,
     },
     price: {
@@ -26,25 +26,44 @@ const propertySchema = new mongoose.Schema(
       state: String,
       zipCode: String,
     },
-    bedrooms: {
+    bedrooms: Number,
+    bathrooms: Number,
+    garages: Number,
+    squareFootage: {
       type: Number,
       required: true,
     },
-    bathrooms: {
-      type: Number,
-      required: true,
-    },
-    squareFootage: Number,
-    amenities: [String], // An array of amenities (e.g., pool, garage, garden)
-    images: [String], // An array of image URLs
+    amenities: [String],
+    images: [String],
     listingDate: {
       type: Date,
-      default: Date.now,
+      required: true,
     },
     agent: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      name: String,
+      email: String,
+      phone: String,
     },
+    views: Number,
+    statusHistory: [
+      {
+        status: String,
+        date: Date,
+      },
+    ],
+    rating: Number,
+    reviews: [
+      {
+        user: {
+          name: String,
+          email: String,
+        },
+        rating: Number,
+        comment: String,
+        date: Date,
+      },
+    ],
+    tags: [String],
   },
   {
     timestamps: true,
