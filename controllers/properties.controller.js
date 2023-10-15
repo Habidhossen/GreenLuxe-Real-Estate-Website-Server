@@ -40,8 +40,8 @@ exports.getAllProperties = async (req, res) => {
 // Get One Properties
 exports.getPropertyById = async (req, res) => {
   try {
-    const PropertiesId = req.params.id;
-    const propertiesData = await propertiesModel.findById(PropertiesId);
+    const propertyId = req.params.propertyId;
+    const propertiesData = await propertiesModel.findById(propertyId);
     res.status(200).json({
       status: "success",
       data: propertiesData,
