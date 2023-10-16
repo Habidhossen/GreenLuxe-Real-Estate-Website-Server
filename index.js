@@ -18,9 +18,11 @@ app.get("/", (req, res) => {
 
 // IMPORT ROUTES
 const propertiesRoute = require("./routes/properties.route");
+const userRoute = require("./routes/user.route");
 
 // ROUTES HERE
 app.use("/api/v1", propertiesRoute);
+app.use("/api/v1", userRoute);
 
 // LISTENING SERVER
 app.listen(port, () => {
