@@ -67,3 +67,22 @@ exports.getUserById = async (req, res) => {
     });
   }
 };
+
+// get admin
+exports.getAdmin = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await userModel.findOne({ email: email });
+    const isAdmin = user?.role === "admin";
+    res.status(200).json({
+      status: "success",
+      admin: isAdmin,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Can't get the data",
+      error: error.message,
+    });
+  }
+};
